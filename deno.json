@@ -9,6 +9,23 @@
       "update": "deno run -A -r https://fresh.deno.dev/update ."
     },
     "script": {
+    },
+    "compilerOptions":{
+        "lib": ["ES6", "dom"],
+        "strict": true
+    },
+    "publish": {
+        "exclude": [
+
+        ],
+        "include": [
+            "README.md",
+            "deno.json"
+        ]
+    },
+    "lint" {
+        "include": ["src/"],
+        "exclude": []
     }
   }
   
