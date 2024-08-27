@@ -20,6 +20,35 @@ class Block implements BlockShape{
 
     static calculateHash(prevHash:string, height:number, data:string): string {
         const toHash = `${prevHash}${height}${data}`
-        return crypto.createHmac('sha256').update(toHash).digest('hex');
+        return crypto.createHash('sha256').update(toHash).digest('hex');
     }
 }
+
+class BlockChain {
+    private blocks: Block[];
+    constructor(){
+        this.blocks = [];
+    }
+
+    private getPrevHash(){
+        if(this.blocks.length === 0) return "";
+        return this.blocks[this.blocks.length - 1].hash;
+    }
+
+    public addBlock(data:string){
+        const block = new Block(this.getPrevHash(), this.blocks.length + 1, data);
+        this.blocks.push(block);
+    }
+
+    public getBlocks(){
+        return this.blocks;
+    }
+}
+
+const blockChain = new BlockChain();
+
+blockChain.addBlock("Frist One");
+blockChain.addBlock("Second One");
+blockChain.addBlock("Third One");
+
+console.log(blockChain.getBlocks());
