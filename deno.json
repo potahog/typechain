@@ -3,16 +3,19 @@
       "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
       "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
       "manifest": "deno task cli manifest $(pwd)",
-      "start": "deno run -A ./src/index.ts",
+      "start": "deno run -A src/index.ts",
       "build": "deno run -A dev.ts build",
       "preview": "deno run -A main.ts",
       "update": "deno run -A -r https://fresh.deno.dev/update ."
     },
     "script": {
     },
-    "compilerOptions":{
-        "lib": ["ES6", "dom"],
-        "strict": true
+    "compilerOptions": {
+        // "esModuleInterop": true,
+        // "target": "esnext",
+        "allowJs": true,    
+        "strict": true,
+        "lib": ["ES6", "dom", "deno.window"]
     },
     "publish": {
         "exclude": [
@@ -23,8 +26,8 @@
             "deno.json"
         ]
     },
-    "lint" {
-        "include": ["src/"],
+    "lint" : {
+        "include": ["src"],
         "exclude": []
     }
   }
